@@ -72,7 +72,7 @@ map.on('load', function () {
         url: 'mapbox://eframunoz.3vonyk3j'
     });
     map.addLayer({
-        id: "Grid 30m",
+        id: "Zona 30m",
         type: "fill",
         source: "GRID_30M",
         'source-layer': "Grid30M-d9k7oe",
@@ -90,7 +90,7 @@ map.on('load', function () {
         url: 'mapbox://eframunoz.74gugazz'
     });
     map.addLayer({
-        id: "Grid 20m",
+        id: "Zona 20m",
         type: "fill",
         source: "GRID_20M",
         'source-layer': "Grid20M-3k8eic",
@@ -108,7 +108,7 @@ map.on('load', function () {
         url: 'mapbox://eframunoz.01k4t3my'
     });
     map.addLayer({
-        id: "Grid 10m",
+        id: "Zona 10m",
         type: "fill",
         source: "GRID_10M",
         'source-layer': "Grid10M-av3k6r",
@@ -121,7 +121,7 @@ map.on('load', function () {
     });
 });
 
-var toggleableLayerIds = [ 'Grid 30m', 'Grid 20m', 'Grid 10m' ];
+var toggleableLayerIds = [ 'Zona 30m', 'Zona 20m', 'Zona 10m' ];
 
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];
