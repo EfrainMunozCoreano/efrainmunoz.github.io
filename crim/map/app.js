@@ -1,4 +1,4 @@
-var map = L.map('map').setView([18.3436, -66.1274], 12);
+var map = L.map('map').setView([18.1543, -66.4192], 10);
 
 L.tileLayer(
   'https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZWZyYW11bm96IiwiYSI6IlhIeHFDQ3cifQ.oegyxy9ChebWfj8WsbClqg',
@@ -36,23 +36,18 @@ var sectorLabelsLayer = L.tileLayer.wms("http://54.149.205.51:8080/geoserver/Pue
     transparent: true
 });
 
-var resArea10Layer = L.tileLayer.wms("http://54.149.205.51:8080/geoserver/PuertoRico/wms", {
-    layers: 'PuertoRico:res_area_10cm',
+var orthoGrid20Layer = L.tileLayer.wms("http://54.149.205.51:8080/geoserver/PuertoRico/wms", {
+    layers: 'PuertoRico:orthogrid20cm',
     format: "image/png",
     transparent: true
 });
 
-var resArea20Layer = L.tileLayer.wms("http://54.149.205.51:8080/geoserver/PuertoRico/wms", {
-    layers: 'PuertoRico:res_area_20cm',
+var orthoGrid10Layer = L.tileLayer.wms("http://54.149.205.51:8080/geoserver/PuertoRico/wms", {
+    layers: 'PuertoRico:orthogrid10cm',
     format: "image/png",
     transparent: true
 });
 
-var resArea30Layer = L.tileLayer.wms("http://54.149.205.51:8080/geoserver/PuertoRico/wms", {
-    layers: 'PuertoRico:res_area_30cm',
-    format: "image/png",
-    transparent: true
-});
 
 var controlGrid01k = L.tileLayer.wms("http://54.149.205.51:8080/geoserver/PuertoRico/wms", {
     layers: 'PuertoRico:grid01k',
@@ -78,39 +73,28 @@ var municipioLayer = L.tileLayer.wms("http://54.149.205.51:8080/geoserver/Puerto
     transparent: true
 });
 
+var flightlineLayer = L.tileLayer.wms("http://54.149.205.51:8080/geoserver/PuertoRico/wms", {
+    layers: 'PuertoRico:flightline',
+    format: "image/png",
+    transparent: true
+});
+
+var flownLayer = L.tileLayer.wms("http://54.149.205.51:8080/geoserver/PuertoRico/wms", {
+    layers: 'PuertoRico:flown',
+    format: "image/png",
+    transparent: true
+});
+
 map.addLayer(sectorLayer);
-map.addLayer(buildingLayer);
 map.addLayer(parcelLayer);
 map.addLayer(sectorLabelsLayer);
-map.addLayer(resArea10Layer);
-map.addLayer(resArea20Layer);
-map.addLayer(resArea30Layer);
 map.addLayer(municipioLayer);
-// map.addLayer(controlGrid01k);
-// map.addLayer(controlGrid10k);
-// map.addLayer(puntosSurveyControl);
+map.addLayer(flownLayer);
+map.addLayer(flightlineLayer);
 
 // Layer Control
 var baseMaps = [];
 var overlays = [
-  {
-    groupName : "Flight Resolution Areas",
-    expanded  : true,
-    layers    : {
-      "10cm"  : resArea10Layer,
-      "20cm"  : resArea20Layer,
-      "30cm"  : resArea30Layer
-    }
-  },
-  {
-    groupName : "Control",
-    expanded  : true,
-    layers    : {
-      "10k Grid" : controlGrid10k,
-      "1k Grid"  : controlGrid01k,
-      "Survey Control Points" : puntosSurveyControl
-    }
-  },
   {
     groupName : "Base Map Layers",
     expanded  : true,
@@ -120,14 +104,27 @@ var overlays = [
       "Sector"    : sectorLayer,
       "Municipios" : municipioLayer
     }
+  },
+  {
+    groupName : "Control",
+    expanded  : true,
+    layers    : {
+      "Flown": flownLayer,
+      "Flight Lines" : flightlineLayer,
+      "Orthogrid 10cm"  : orthoGrid10Layer,
+      "Orthogrid 20cm" : orthoGrid20Layer,
+      "Original Grid 1k"  : controlGrid01k,
+      "Original Grid 10k" : controlGrid10k,
+      "Survey Control Points" : puntosSurveyControl
+    }
   }
 ];
 
 
 var options = {
     container_width     : "300px",
-    container_maxHeight : "350px",
-    group_maxHeight     : "80px",
+    container_maxHeight : "800px",
+    group_maxHeight     : "260px",
     exclusive           : false
 };
 

@@ -1717,6 +1717,21 @@
 				height: 48px;
 			}
 
+			.image.avatar64 img {
+				width: 64px;
+				height: 64px;
+			}
+
+			.image.avatar96 img {
+				width: 96px;
+				height: 96px;
+			}
+
+			.image.avatar128 img {
+				width: 128px;
+				height: 128px;
+			}
+
 		.image.fit {
 			display: block;
 			width: 100%;
