@@ -17,6 +17,9 @@
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<script src="assets/js/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.js"
+		        integrity="sha256-1qeNeAAFNi/g6PFChfXQfa6CQ8eXoHXreohinZsoJOQ="
+						crossorigin="anonymous"></script>
 	</head>
 	<body>
 
@@ -139,7 +142,7 @@
 						<div class="container">
 
 							<header>
-								<h2>Maps</h2>
+								<h2>Interactive Map</h2>
 							</header>
 
 							<p>Elementum sem parturient nulla quam placerat viverra
@@ -182,33 +185,38 @@
 							<div class="container">
 
 								<header>
-									<h2>Reports</h2>
+									<h2>Progress Reports</h2>
 								</header>
 
-								<p>Elementum sem parturient nulla quam placerat viverra
-								mauris non cum elit tempus ullamcorper dolor. Libero rutrum ut lacinia
-								donec curae mus. Eleifend id porttitor ac ultricies lobortis sem nunc
-								orci ridiculus faucibus a consectetur. Porttitor curae mauris urna mi dolor.</p>
+								<p>The following charts show the progress of the aerial photogrammetry
+									 flight sessions. There are two scale flights: one for 10cm orthophotos
+								   and the other for 20cm orthophotos. Charts show individual and combined
+									 flying progress.
+								  </p>
+
 
 								<div class="row">
 									<div class="4u 12u$(mobile)">
 										<article class="item">
-											<div id="chartContainer" href="#reports" class="image fit" target="_blank"><img src="images/pic02.jpg" alt="" /></div>
-										</article>
-									</div>
-									<div class="4u 12u$(mobile)">
-										<article class="item">
-											<a href="./map/index.html" class="image fit" target="_blank"><img src="images/pic03.jpg" alt="" /></a>
+											<canvas id="chart10cm" width="400" height="400" /></canvas>
 											<header>
-												<h3>Report B</h3>
+												<h3>10cm Pixel Resolution Orthos</h3>
 											</header>
 										</article>
 									</div>
 									<div class="4u 12u$(mobile)">
 										<article class="item">
-											<a href="../demo/crim.html" class="image fit" target="_blank"><img src="images/pic02.jpg" alt="" /></a>
+											<canvas id="chart20cm" width="400" height="400" /></canvas>
 											<header>
-												<h3>Report C</h3>
+												<h3>20cm Pixel Resolution Orthos</h3>
+											</header>
+										</article>
+									</div>
+									<div class="4u 12u$(mobile)">
+										<article class="item">
+											<canvas id="chartTotal" width="400" height="400" /></canvas>
+											<header>
+												<h3>Combined Total</h3>
 											</header>
 										</article>
 									</div>
@@ -295,99 +303,81 @@
 			<script src="assets/js/main.js"></script>
 
 			<script>
-			mapboxgl.accessToken = 'pk.eyJ1IjoiZWZyYW11bm96IiwiYSI6IlhIeHFDQ3cifQ.oegyxy9ChebWfj8WsbClqg';
-			var map = new mapboxgl.Map({
-			    container: 'maplet',
-			    style: 'mapbox://styles/mapbox/light-v9',
-			    zoom: 9,
-			    center: [-66.30, 18.15]
+			var ctx = document.getElementById("chart10cm");
+			var myChart = new Chart(ctx, {
+					type: 'pie',
+					data: {
+							labels: ["Flown", "To Fly"],
+							datasets: [{
+									label: '',
+									data: [18.6, 81.4],
+									backgroundColor: [
+											'rgba(20, 20, 190, 0.4)',
+											'rgba(54, 54,105, 0.4)'
+									],
+									borderColor: [
+											'rgba(20, 20, 90, 0.5)',
+											'rgba(54, 54,105, 0.5)'
+									],
+									borderWidth: 1
+							}]
+					},
+					options: {
+
+					}
 			});
+			</script>
 
-			map.on('load', function () {
-			    // GRID 30m
-			    map.addSource('GRID_30M', {
-			        type: 'vector',
-			        url: 'mapbox://eframunoz.3vonyk3j'
-			    });
-			    map.addLayer({
-			        id: "Zona 30m",
-			        type: "fill",
-			        source: "GRID_30M",
-			        'source-layer': "Grid30M-d9k7oe",
-			        layout: {
-			            visibility: 'visible'
-			        },
-			        "paint": {
-			            'fill-color': "rgba(61,153,80,0.55)"
-			        }
-			    });
+			<script>
+			var ctx = document.getElementById("chart20cm");
+			var myChart = new Chart(ctx, {
+					type: 'pie',
+					data: {
+							labels: ["Flown", "To Fly"],
+							datasets: [{
+									label: '',
+									data: [31.5, 68.5],
+									backgroundColor: [
+											'rgba(90, 20, 20, 0.4)',
+											'rgba(54, 54,105, 0.4)'
+									],
+									borderColor: [
+											'rgba(90, 20, 20, 0.5)',
+											'rgba(54, 54,105, 0.5)'
+									],
+									borderWidth: 1
+							}]
+					},
+					options: {
 
-			    // GRID 20m
-			    map.addSource('GRID_20M', {
-			        type: 'vector',
-			        url: 'mapbox://eframunoz.74gugazz'
-			    });
-			    map.addLayer({
-			        id: "Zona 20m",
-			        type: "fill",
-			        source: "GRID_20M",
-			        'source-layer': "Grid20M-3k8eic",
-			        layout: {
-			            visibility: 'visible'
-			        },
-			        "paint": {
-			            'fill-color': "rgba(153,61,80,0.55)"
-			        }
-			    });
-
-			    // GRID 10m
-			    map.addSource('GRID_10M', {
-			        type: 'vector',
-			        url: 'mapbox://eframunoz.01k4t3my'
-			    });
-			    map.addLayer({
-			        id: "Zona 10m",
-			        type: "fill",
-			        source: "GRID_10M",
-			        'source-layer': "Grid10M-av3k6r",
-			        layout: {
-			            visibility: 'visible'
-			        },
-			        "paint": {
-			            'fill-color': "rgba(80,61,153,0.55)"
-			        }
-			    });
+					}
 			});
+			</script>
 
-			var toggleableLayerIds = [ 'Zona 30m', 'Zona 20m', 'Zona 10m' ];
+			<script>
+			var ctx = document.getElementById("chartTotal");
+			var myChart = new Chart(ctx, {
+					type: 'pie',
+					data: {
+							labels: ["Flown", "To Fly"],
+							datasets: [{
+									label: '',
+									data: [20.9, 79.1],
+									backgroundColor: [
+											'rgba(20, 99, 20, 0.4)',
+											'rgba(54, 54,105, 0.4)'
+									],
+									borderColor: [
+											'rgba(20, 99, 20, 0.5)',
+											'rgba(54, 54,105, 0.5)'
+									],
+									borderWidth: 1
+							}]
+					},
+					options: {
 
-			for (var i = 0; i < toggleableLayerIds.length; i++) {
-			    var id = toggleableLayerIds[i];
-
-			    var link = document.createElement('a');
-			    link.href = '#';
-			    link.className = 'active';
-			    link.textContent = id;
-
-			    link.onclick = function (e) {
-			        var clickedLayer = this.textContent;
-			        e.preventDefault();
-			        e.stopPropagation();
-
-			        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-
-			        if (visibility === 'visible') {
-			            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-			            this.className = '';
-			        } else {
-			            this.className = 'active';
-			            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-			        }
-			    };
-
-			    var layers = document.getElementById('menu');
-			    layers.appendChild(link);
-			}
+					}
+			});
 			</script>
 
 	</body>
