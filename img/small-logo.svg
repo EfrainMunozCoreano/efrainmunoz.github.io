@@ -1,0 +1,34 @@
+
+<svg width="318px" height="122px" viewBox="0 0 318 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <text id="text-1" font-family="Satisfy" font-size="64" font-weight="normal" letter-spacing="-2.66666675" fill="#F6A623">
+            <tspan x="0.187500477" y="60">Efraín Muñoz</tspan>
+        </text>
+        <filter x="-3.0%" y="-5.5%" width="107.0%" height="122.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.373471467 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="About-Me" transform="translate(-198.000000, -46.000000)">
+            <g id="Main-Logo" transform="translate(204.000000, 34.000000)">
+                <g id="Efraín-Muñoz" fill-opacity="1" fill="#F6A623">
+                    <use filter="url(#filter-2)" xlink:href="#text-1"></use>
+                    <use xlink:href="#text-1"></use>
+                </g>
+                <text id="Software-Developer" font-family="AmaticSC-Regular, Amatic SC" font-size="36" font-weight="normal" letter-spacing="-3" fill="#FFFFFF">
+                    <tspan x="82" y="120">Software Developer</tspan>
+                </text>
+                <text id="{" font-family="AmaticSC-Bold, Amatic SC" font-size="72" font-weight="bold" letter-spacing="-6" fill="#9B9B9B">
+                    <tspan x="64" y="132">{</tspan>
+                </text>
+                <text id="}" font-family="AmaticSC-Bold, Amatic SC" font-size="72" font-weight="bold" letter-spacing="-6" fill="#9B9B9B">
+                    <tspan x="221" y="132">}</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
